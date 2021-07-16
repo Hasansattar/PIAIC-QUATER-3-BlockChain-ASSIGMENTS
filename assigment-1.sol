@@ -69,8 +69,8 @@ contract Yamaha is motorCycle{
 
 contract carServiceStation {
      
-    function vehicleService(Cars acar) public view returns(string memory){
-    return  acar.Service();
+    function vehicleService(Cars Vehicle) public view returns(string memory){
+    return  Vehicle.Service();
         
     
     }
@@ -79,8 +79,8 @@ contract carServiceStation {
 
 contract truckServiceStation{
     
-      function vehicleService(Truck atruck) public view returns(string memory){
-      return atruck.Service();
+      function vehicleService(Truck Vehicle) public view returns(string memory){
+      return Vehicle.Service();
    
         
     }
@@ -88,8 +88,8 @@ contract truckServiceStation{
 }
 contract motorCycleServiceStation{
     
-      function vehicleService(motorCycle amotorCycle) public view  returns(string memory){
-      return amotorCycle.Service(); 
+      function vehicleService(motorCycle Vehicle) public view  returns(string memory){
+      return Vehicle.Service(); 
         
         
     }
