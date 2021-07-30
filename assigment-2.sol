@@ -86,7 +86,7 @@ contract CryptoBank{
        
        function closeAccount(address _accountholder) public payable{
            require(msg.sender==_accountholder,'address is not valid');
-           require(msg.value==0,"Account has a amount");
+           require(accountDepositor[counter][_accountholder]==0,"Account has a amount");
            selfdestruct(payable(_accountholder));
        }
      
