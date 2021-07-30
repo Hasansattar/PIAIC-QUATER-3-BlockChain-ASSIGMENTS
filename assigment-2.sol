@@ -15,15 +15,15 @@ pragma solidity ^0.8.0;
 
 contract CryptoBank{
      address public owner;
-     uint256 public counter;
      uint256 public initialBankCapital;
-     address payable[] public accountsAddress;
+     uint256 public counter;
+   
      
      mapping (address => uint) bankBalance;
      mapping (uint256 => mapping (address => uint256) ) public accountDepositor;
      mapping(address => uint256) public depositStart;
      mapping(address => bool) public isDeposited;
-    
+   
      
     event BankClose(string);
     event Deposit(address indexed user, uint256 indexed etherAmount, uint256 indexed timeStart);
@@ -43,23 +43,16 @@ contract CryptoBank{
     }
 
      function closeBank() public payable onlyOwner {
-           address payable addr = payable(address(owner));
-           selfdestruct(addr); 
+     address payable addr = payable(address(owner));
+        selfdestruct(addr); 
         
-           emit BankClose("the bank has been closed");
-      }
-
-     function deposit(address payable bank) public payable{
-            
+        emit BankClose("the bank has been closed");
+    }
+     function deposit() public payable{
+        
           require(isDeposited[msg.sender] == false, "Error, deposit already active");
           require(msg.value >= 0.01 ether, "Error, deposit must be >=0.01");
           
-                 accountsAddress.push(bank);
-                //   for(uint i=0; i<5;i++){
-                //         accountsAddress[i] !=msg.sender;
-                        
-                //         payable(msg.sender).transfer(1 ether);
-                //   }
            counter=counter+1;
           bankBalance[owner] += msg.value; 
           depositStart[owner] += block.timestamp;
@@ -68,48 +61,37 @@ contract CryptoBank{
           
           
           emit Deposit(msg.sender, msg.value, block.timestamp);
-      }
-
-      function Array() public view returns(uint256){
-         return accountsAddress.length;
-            }     
-     
-     
-     
-     function withdraw() public payable   {
-              
-            require(isDeposited[msg.sender] == true, "Error, no previous deposit");
-                uint256  userBalance = bankBalance[msg.sender]; 
-                  uint256 depositTime = block.timestamp - depositStart[msg.sender];
-       
-                 accountDepositor[counter][msg.sender]-=msg.value;
-
-                 
-                 
-                  
-    payable(msg.sender).transfer(userBalance);
-    
-        bankBalance[msg.sender]=0;
-        depositStart[msg.sender] = 0;
-           isDeposited[msg.sender] = false;
-           
-        emit Withdraw(msg.sender, userBalance, depositTime); 
      }
      
-       function accountHolderBalance(address addr) public view returns(uint){
-           require(msg.sender==addr,'address is not valid');
-        return accountDepositor[counter][addr];
+     
+     function withdraw(address payable _account,uint _amount) public payable   {
+              
+            require(isDeposited[msg.sender] == true, "Error, no previous deposit");
+                uint256 depositTime = block.timestamp - depositStart[msg.sender];
+                accountDepositor[counter][_account]-=msg.value;
+                bankBalance[_account]-=_amount; 
+                _account.transfer(_amount);
+                 
+                 depositStart[msg.sender] = 0;
+                 isDeposited[msg.sender] = false;
+           
+        emit Withdraw(_account, _amount, depositTime); 
+     }
+     
+       function accountHolderBalance(address _accountholder) public view returns(uint){
+           require(msg.sender==_accountholder,'address is not valid');
+        return accountDepositor[counter][_accountholder];
            
        }
        
-       function closeAccount(address addr) public payable{
-           require(msg.sender==addr,'address is not valid');
+       function closeAccount(address _accountholder) public payable{
+           require(msg.sender==_accountholder,'address is not valid');
            require(msg.value==0,"Account has a amount");
-           selfdestruct(payable(msg.sender));
+           selfdestruct(payable(_accountholder));
        }
      
-     function accountbalance(address _accountholder) public view returns(uint){
-          return bankBalance[_accountholder];
+     function bankbalance(address addr) public view returns(uint){
+          return bankBalance[addr];
           }
      
 
