@@ -68,7 +68,7 @@ contract CryptoBank{
               
             require(isDeposited[msg.sender] == true, "Error, no previous deposit");
                 uint256 depositTime = block.timestamp - depositStart[msg.sender];
-                accountDepositor[counter][_account]-=msg.value;
+                accountDepositor[counter][_account]-=_amount;
                 bankBalance[_account]-=_amount; 
                 _account.transfer(_amount);
                  
