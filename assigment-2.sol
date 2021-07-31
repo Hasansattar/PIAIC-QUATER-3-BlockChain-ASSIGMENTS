@@ -8,7 +8,7 @@
     6) Only valid account holders can withdraw
     7) First 5 accounts will get a bonus of 1 ether in bonus
     8) Account holder can inquiry balance
-The depositor can request for closing an account
+    9)The depositor can request for closing an account
 **/
 
 pragma solidity ^0.8.0;
@@ -34,6 +34,7 @@ contract CryptoBank{
              initialBankCapital =_initialBankCapital;
               require(initialBankCapital>=50 ether,"you must have 50 ether min");
               owner = msg.sender;
+              counter=0;
               bankBalance[owner]=_initialBankCapital;
      }
      
@@ -49,11 +50,16 @@ contract CryptoBank{
         emit BankClose("the bank has been closed");
     }
      function deposit() public payable{
-        
+          require( msg.sender !=address(0),"value should not be 0 or invalid address");
           require(isDeposited[msg.sender] == false, "Error, deposit already active");
           require(msg.value >= 0.01 ether, "Error, deposit must be >=0.01");
-          
-           counter=counter+1;
+              
+               if(counter <=4){
+                   accountDepositor[msg.sender] += 1000000000000000000;
+                   counter++;
+               }
+
+
           bankBalance[owner] += msg.value; 
           depositStart[owner] += block.timestamp;
           isDeposited[msg.sender] = true;
@@ -65,7 +71,7 @@ contract CryptoBank{
      
      
      function withdraw(address payable _account,uint _amount) public payable   {
-              
+            require(_amount > 0 && _account !=address(0),"value should not be 0 or invalid address"); 
             require(isDeposited[msg.sender] == true, "Error, no previous deposit");
                 uint256 depositTime = block.timestamp - depositStart[msg.sender];
                 accountDepositor[counter][_account]-=_amount;
@@ -80,7 +86,7 @@ contract CryptoBank{
      
        function accountHolderBalance(address _accountholder) public view returns(uint){
            require(msg.sender==_accountholder,'address is not valid');
-        return accountDepositor[counter][_accountholder];
+           return accountDepositor[counter][_accountholder];
            
        }
        
