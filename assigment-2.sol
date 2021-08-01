@@ -54,11 +54,12 @@ contract CryptoBank{
           require(isDeposited[msg.sender] == false, "Error, deposit already active");
           require(msg.value >= 0.01 ether, "Error, deposit must be >=0.01");
               
-               if(counter <=4){
-                   accountDepositor[msg.sender] += 1000000000000000000;
+                  if(counter <=4){  
+                  uint   bonus =1000000000000000000;
+                   accountDepositor[counter][msg.sender] =msg.value + bonus;
+                   bankBalance[owner]+=bonus;
                    counter++;
                }
-
 
           bankBalance[owner] += msg.value; 
           depositStart[owner] += block.timestamp;
@@ -93,6 +94,7 @@ contract CryptoBank{
        function closeAccount(address _accountholder) public payable{
            require(msg.sender==_accountholder,'address is not valid');
            require(accountDepositor[counter][_accountholder]==0,"Account has a amount");
+           
            selfdestruct(payable(_accountholder));
        }
      
