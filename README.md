@@ -18,8 +18,8 @@ MotorCycle,
 4)
 Create 3 Service Stations for each vehicle type, with the same
 function “vehicleService that takes the address of the deployed
-contracts of step 3, in the “Vehicle” variable to call the service
-function
+contracts of step 3, in the “Vehicle” variable to call the service function
+
 
  ***ASSIGMNET-2***
 
@@ -33,3 +33,10 @@ function
     7) First 5 accounts will get a bonus of 1 ether in bonus
     8) Account holder can inquiry balance
     9)The depositor can request for closing an account
+    
+  ***ASSIGMENT-3***
+  
+    Create a token based on ERC20 which is buyable. Following features should present;
+    1. Anyone can get the token by paying against ether
+    2. Add fallback payable method to Issue token based on Ether received. Say 1 Ether = 100 tokens.
+    3. There should be an additional method to adjust the price that allows the owner to adjust the price.
