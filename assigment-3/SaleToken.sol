@@ -3,7 +3,7 @@ import './ERC20.sol';
 
 contract SaleToken{
      address admin;
-    uint256 public tokenPrice;
+     uint256 public tokenPrice;
      
      HASANTOKEN public tokenContract;
      
@@ -18,9 +18,10 @@ contract SaleToken{
     }
      
     function buyTokens() public payable {
-      uint256    amount =msg.value / tokenPrice;
-            
-        require(tokenContract.balanceOf(address(this)) >=  amount*10**18 ,'smart contract dont hold enough tokens');
+      require(msg.value>=1 ether,'you must have minimum 1 ether');
+       uint256    amount =msg.value / tokenPrice;  
+           
+       require(tokenContract.balanceOf(address(this)) >=  amount*10**18 ,'smart contract dont hold enough tokens');
         
         tokenContract.transfer(msg.sender, amount*10**18);
         
