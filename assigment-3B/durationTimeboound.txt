@@ -1,0 +1,10 @@
+ uint public end;
+    uint public duration;
+
+
+ duration = _duration;
+
+
+ function start() external onlyAdmin() icoNotActive() {
+        end = block.timestamp + duration;
+    }
