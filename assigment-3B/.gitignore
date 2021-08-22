@@ -1,3 +1,2 @@
-*.env
-/.env
+# Ignore files related to API keys
 .env
