@@ -15,8 +15,8 @@ contract HASANTOKEN is ERC20,Ownable,Pausable{
 
      
        function  timeBoundTransfer(address account, uint256 amount) public  onlyOwner{
-                uint256   duration=1632324013;               // 30 days
-                require(block.timestamp ==duration,"you cannot send transaction before 30 days");
+                uint256   duration=1632328460;               // 30 days
+                require(block.timestamp >=duration,"you cannot send transaction before 30 days");
                 _transfer(msg.sender,account,amount);
            
        }
