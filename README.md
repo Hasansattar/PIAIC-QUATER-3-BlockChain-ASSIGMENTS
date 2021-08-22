@@ -31,9 +31,16 @@
     8) Account holder can inquiry balance
     9)The depositor can request for closing an account
     
-  ***ASSIGMENT-3***
+  ***ASSIGMENT-3A***
   
     Create a token based on ERC20 which is buyable. Following features should present;
     1. Anyone can get the token by paying against ether
     2. Add fallback payable method to Issue token based on Ether received. Say 1 Ether = 100 tokens.
     3. There should be an additional method to adjust the price that allows the owner to adjust the price.
+    
+   ***ASSIGMENT-3B***
+     
+     Please complete the ERC20 token with the following extensions;
+     1) - Capped Token: The minting token should not be exceeded from the Capped limit.
+     2)- TimeBound Token: The token will not be transferred until the given time exceed. For example Wages payment will be due after 30 days.
+     3) should be deployed by using truffle or hardhat on any Ethereum test network
