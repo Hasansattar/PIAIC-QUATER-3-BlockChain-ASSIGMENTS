@@ -7,16 +7,18 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol";
  
 contract HASANTOKEN is ERC20,Ownable,Pausable{
       uint256 public cap;
+      uint256 public timeDuration;
 
     constructor(uint256 initialSupply) ERC20("HASANTOKEN","HT"){
-           cap=initialSupply*10;
-         _mint(msg.sender, initialSupply);
+        timeDuration=block.timestamp +  30 days; 
+        cap=initialSupply*10;
+        _mint(msg.sender, initialSupply);
     }
 
      
        function  timeBoundTransfer(address account, uint256 amount) public  onlyOwner{
-                uint256   duration=1632328460;               // 30 days
-                require(block.timestamp >=duration,"you cannot send transaction before 30 days");
+               // uint256   duration=1632328460;               // 30 days
+                require(block.timestamp >=timeDuration,"you cannot send transaction before 30 days");
                 _transfer(msg.sender,account,amount);
            
        }
