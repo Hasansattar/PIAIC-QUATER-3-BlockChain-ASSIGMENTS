@@ -16,11 +16,11 @@ contract HASANTOKEN is ERC20,Ownable,Pausable{
     }
 
      
-       function  timeBoundTransfer(address account, uint256 amount) public  onlyOwner{
+       function  timeBoundTransfer(address account, uint256 amount) public  onlyOwner returns(bool){
                // uint256   duration=1632328460;               // 30 days
                 require(block.timestamp >=timeDuration,"you cannot send transaction before 30 days");
-                _transfer(msg.sender,account,amount);
-           
+                _transfer(_msgSender(),account,amount);
+            return true;
        }
 
     function generateToken(uint256 amount) public onlyOwner whenNotPaused {
