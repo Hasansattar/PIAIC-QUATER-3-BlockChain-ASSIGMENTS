@@ -15,6 +15,7 @@ npx hardhat help
 ```
 
 ***ASSIGMENT 3C***
+
   We will continue with the previous token and extend that token with new features.
  1. Owner can transfer the ownership of the Token Contract.
  2. Owner can approve or delegate anybody to manage the pricing of tokens.
