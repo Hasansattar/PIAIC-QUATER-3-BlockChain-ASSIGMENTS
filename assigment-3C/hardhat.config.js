@@ -19,13 +19,17 @@ const PRIVATE_KEY=`0x${process.env.PRIVATE_KEY_1}`;
 
   solidity: "0.8.0",
   networks:{
+    localhost: {
+      url: "http://127.0.0.1:8545"
+    },
     hardhat: {
       chainId: 1337
     },
     rinkeby:{
       url:INFURA_URL_ID,
       accounts:[PRIVATE_KEY]
-    }
+    },
+
   },
   //ehtereum API key
   etherscan: {
