@@ -1,26 +1,24 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
- 
-  
-contract HASANTOKEN is ERC20,Ownable{
-   
-              
-      uint256 public cap;
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Capped.sol";
+
+contract HASANTOKEN is ERC20Capped,Ownable{
+    
       uint256 public tokenPrice; 
       address public priceSetter;
-       
         
-    constructor(uint256 initialSupply,uint256 _tokenPrice) ERC20("HASANTOKEN","HT"){
-            
-           tokenPrice=_tokenPrice;
-           cap=initialSupply*10;
-         _mint(msg.sender, initialSupply);
-     
-           
+    
+    constructor( string memory name,string memory symbol,uint256 cap, uint256 _tokenPrice )
+    ERC20(name, symbol) 
+    ERC20Capped(cap)
+    {
+     tokenPrice=_tokenPrice; 
+        
     }
+    
+    
       function delegationOfPricingManager(address _pricingManagerAddress)  public onlyOwner returns(string memory, address) {
        require(_pricingManagerAddress !=address(0),"address must be valid");
        priceSetter = payable( _pricingManagerAddress);
@@ -34,18 +32,11 @@ contract HASANTOKEN is ERC20,Ownable{
         return true;
     }
        
-    
-    
-    
-    function generateToken(uint256 amount) public onlyOwner{
-        require(amount >0, "Invalid amount");
-        require(totalSupply()+amount<cap,"overLimit token: Token generation failed");
+    function generateToken(uint256 amount) public virtual onlyOwner{
         _mint(msg.sender,amount);
         
     }
      
-    
-    
     
     
 }
