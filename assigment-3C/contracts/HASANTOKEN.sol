@@ -44,12 +44,12 @@ contract HASANTOKEN is ERC20Capped,Ownable{
     }
     
 
-     function returnToken(uint _tokenCountReturned) public payable returns (bool) {
+     function returnToken(uint _tokenCountReturned) public returns (bool) {
       require (msg.sender != address(0) , "you are not a valid token holder");
       
       
       uint weiReturned = tokenPrice * _tokenCountReturned;
-        _transfer(admin,msg.sender,weiReturned);
+       payable(msg.sender).transfer(weiReturned);
     
       return true;
   }
