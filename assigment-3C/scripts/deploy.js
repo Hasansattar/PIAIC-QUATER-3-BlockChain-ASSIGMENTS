@@ -11,16 +11,11 @@ async function main() {
     );
 
   const MyToken = await hre.ethers.getContractFactory("HASANTOKEN");
-  const myToken = await MyToken.deploy('HASANTOKEN','HT','1000000000000000000000','100000');
+  const myToken = await MyToken.deploy('HASANTOKEN','HT','1000000000000000000000000','1000000000000000');
 
   console.log("deployed at:", myToken.address);
 
-
-
-
-
 }
-
 
 main()
   .then(() => process.exit(0))
