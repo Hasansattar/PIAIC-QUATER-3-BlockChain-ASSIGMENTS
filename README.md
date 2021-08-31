@@ -64,7 +64,7 @@
      NFT minting hard limit is 100
   
 
-  [website]: https://hasansattar-portfolio.netlify.app/
+  
 
-  http://github.com - automatic!
-[GitHub](http://github.com)
+   
+[GitHub](https://github.com/Hasansattar)
