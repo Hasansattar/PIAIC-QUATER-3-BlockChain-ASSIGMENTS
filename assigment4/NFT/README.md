@@ -1,15 +1,10 @@
-# Basic Sample Hardhat Project
+# ASSIGMENT-4
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+ Create an ERC721 Token with the following requirements
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
+  user can only buy tokens when the sale is started
+  the sale should be ended within 30 days
+  the owner can set base URI
+  the owner can set the price of NFT
+  NFT minting hard limit is 100
 ```
