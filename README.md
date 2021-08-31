@@ -65,3 +65,6 @@
   
 
   [website]: https://hasansattar-portfolio.netlify.app/
+
+  http://github.com - automatic!
+[GitHub](http://github.com)
