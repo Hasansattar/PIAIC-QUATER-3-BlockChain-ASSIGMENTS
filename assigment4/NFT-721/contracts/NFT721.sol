@@ -55,7 +55,7 @@ pragma solidity ^0.8.0;
         totalSupply++;
     }
     
-    function buyNft(uint quantity) external payable {
+    function buyNft(uint quantity) external payable isSaleOn {
          require(totalSupply<=100,"total supply should not increased 100");
         uint lastTokenId = lastPublickSaleTokenIndex;
         require(msg.value == salePrice * quantity,"Invalid amount!");
