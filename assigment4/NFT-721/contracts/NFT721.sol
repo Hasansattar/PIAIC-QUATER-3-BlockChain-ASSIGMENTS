@@ -661,33 +661,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     ) internal virtual {}
 }
 
-// abstract contract ReentrancyGuard {
-    
-    
-//     uint256 private constant _NOT_ENTERED = 1;
-//     uint256 private constant _ENTERED = 2;
-
-//     uint256 private _status;
-
-//     constructor() {
-//         _status = _NOT_ENTERED;
-//     }
-
-    
-//     modifier nonReentrant() {
-        
-//         require(_status != _ENTERED, "ReentrancyGuard: reentrant call");
-
-        
-//         _status = _ENTERED;
-
-//         _;
-
-        
-        
-//         _status = _NOT_ENTERED;
-//     }
-// }
+ 
 
 abstract contract Ownable is Context {
     address private _owner;
@@ -749,8 +723,9 @@ contract NFT721 is Ownable, ERC721 {
         baseURI = _baseURI;
         return("Base URI is set now.");
     }
+
+    //tokenURI: https://gateway.pinata.cloud/ipfs/QmXpueTD4C6SUEPwRY18QymnwRefEbEj1fmYfGePWzoWGJ
     
-    //ttokenURI: https://bafkreigkygjq6pywis7d22miplcbvdllfvjec3bekomspyoiwpbttopztq.ipfs.dweb.link/
 
     //mapping(uint => string) URIlist;
     
