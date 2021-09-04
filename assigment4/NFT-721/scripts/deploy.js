@@ -10,7 +10,7 @@ async function main() {
     );
 
   const MyToken = await hre.ethers.getContractFactory("NFT721");
-  const myToken = await MyToken.deploy('1500','HASAN-NFT-TOKEN','HNT');
+  const myToken = await MyToken.deploy();
 
   console.log("deployed at:", myToken.address);
 
