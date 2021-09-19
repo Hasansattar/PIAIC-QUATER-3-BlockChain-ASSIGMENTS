@@ -20,24 +20,19 @@ const privateKeyBuffer= Buffer.from(account1_private_key,'hex');
 
 const contractDeployAsync= async()=>{
   try {
-    //get transaction nonce
     let txCount= await web3.eth.getTransactionCount(account1);
-
-    //Build a transaction object
     const txObject = {
             nonce:    web3.utils.toHex(txCount),
             gasLimit: web3.utils.toHex(1000000), // Raise the gas limit to a much higher amount
             gasPrice: web3.utils.toHex(web3.utils.toWei('10', 'gwei')),
             data: byteCodeBuffer
           }
-
-          //Sign the transaction
            const tx=new Tx.Transaction(txObject,{'chain':'rinkeby'});
            tx.sign(privateKeyBuffer);
            const serializedTx=tx.serialize();
            const raw="0x"+serializedTx.toString('hex');
 
-                 //Broadcast the transtion
+
            let signedTransaction= await web3.eth.sendSignedTransaction(raw);
            console.log("SIGNED TRANSACTION",signedTransaction);
     
