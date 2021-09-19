@@ -18,9 +18,7 @@ byteCode="608060405234801561001057600080fd5b5061012f806100206000396000f3fe608060
 const byteCodeBuffer= Buffer.from(byteCode, 'hex');
 const privateKeyBuffer= Buffer.from(account1_private_key,'hex');
 
-
 const contractDeployAsync= async()=>{
-
   try {
     let txCount= await web3.eth.getTransactionCount(account1);
     const txObject = {
